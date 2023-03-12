@@ -14,74 +14,74 @@ int main()
 {
     std::cout << " Lab #5  !\n";
     //1 ex
-    class Pair {
+    #include <iostream>
+
+using namespace std;
+
+class Pair {
 public:
     int first, second;
-    Pair(int a, int b) {
+    
+    Pair(int a = 0, int b = 0) {
         first = a;
         second = b;
     }
-
+    
     void setFirst(int a) {
         first = a;
     }
-
+    
     void setSecond(int b) {
         second = b;
     }
-
-    bool operator>(const Pair& other) const {
-        if (first > other.first)
-            return true;
-        else if (first == other.first && second > other.second)
-            return true;
-        else
-            return false;
+    
+    int getFirst() const {
+        return first;
+    }
+    
+    int getSecond() const {
+        return second;
+    }
+    
+    void print() const {
+        cout << "(" << first << ", " << second << ")";
     }
 };
 
-class Fraction : public Pair {
+class Rectangle : public Pair {
 public:
-    Fraction(int a, int b) : Pair(a, b) {}
-
-    bool operator==(const Fraction& other) const {
-        return (first == other.first && second == other.second);
+    Rectangle(int a = 0, int b = 0) : Pair(a, b) {}
+    
+    int area() const {
+        return getFirst() * getSecond();
     }
-
-    bool operator!=(const Fraction& other) const {
-        return !(*this == other);
-    }
-
-    bool operator>(const Fraction& other) const {
-        return Pair::operator>(other);
-    }
-
-    bool operator<(const Fraction& other) const {
-        return !(*this > other) && (*this != other);
-    }
-
-    bool operator>=(const Fraction& other) const {
-        return (*this > other)  (*this == other);
-    }
-
-    bool operator<=(const Fraction& other) const {
-        return (*this < other)  (*this == other);
+    
+    int perimeter() const {
+        return 2 * (getFirst() + getSecond());
     }
 };
 
 int main() {
-    Fraction a(3, 4);
-    Fraction b(1, 2);
-    Fraction c(3, 4);
-
-    cout << "a > b: " << (a > b) << endl;
-    cout << "a == c: " << (a == c) << endl;
-    cout << "b < c: " << (b < c) << endl;
-    cout << "a >= c: " << (a >= c) << endl;
-    cout << "b <= c: " << (b <= c) << endl;
-
+    Rectangle r(5, 10);
+    
+    cout << "Rectangle r: ";
+    r.print();
+    cout << endl;
+    cout << "Area: " << r.area() << endl;
+    cout << "Perimeter: " << r.perimeter() << endl;
+    
+    r.setFirst(8);
+    r.setSecond(12);
+    
+    cout << "Updated rectangle r: ";
+    r.print();
+    cout << endl;
+    cout << "Area: " << r.area() << endl;
+    cout << "Perimeter: " << r.perimeter() << endl;
+    
     return 0;
-} 
+}
+
     //Ex 2
     class Node {
 public:
